@@ -21,7 +21,10 @@ router.get('/', function (req, res, next) {
 				}
 			})
 			.map((row) => {
-				return row.name
+				return {
+					name: row.name,
+					type: row.type.match(/\w+/)[0],
+				}
 			})
 
 		db.all("SELECT date, title, quantity, distance FROM test_items WHERE 1", (err, rows) => {
